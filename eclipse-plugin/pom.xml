@@ -1,0 +1,128 @@
+
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+    
+    <parent>
+        <groupId>org.s4i</groupId>
+        <artifactId>maven-parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.s4i</groupId>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>rcp</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>bundle</packaging>
+    <name>eclipse-plugin</name>
+    <description>A Simple Eclipse RCP Bundle</description>
+	
+    <build>
+        <!-- don't use artifactId as first part of finalName, follow instead the eclipse convention -->  
+<!--        <finalName>org.s4i.maven.apache.uima.caseditor_${parsedVersion.osgiVersion}</finalName>  -->
+        <resources>
+            <resource>
+                <directory>.</directory>
+                <includes>
+                    <include>plugin.xml</include>
+                    <include>icons/**/*.*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src\main\resources</directory>
+            </resource>
+        </resources>
+        
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.7</version>
+                <extensions>true</extensions>
+                    
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>$(maven-symbolicname);singleton:=true</Bundle-SymbolicName>
+                        <Bundle-Activator>org.s4i.Activator</Bundle-Activator>
+<!--                        <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
+                        <Bundle-RequiredExecutionEnvironment>J2SE-1.6</Bundle-RequiredExecutionEnvironment>-->
+<!--                        <Bundle-ClassPath>classes</Bundle-ClassPath>-->
+<!--                                <Bundle-Name>${project.name}</Bundle-Name>-->
+<!--                                <Bundle-Version>${project.version}</Bundle-Version>-->
+<!--                        <Export-Package>
+                            org.s4i.*
+                        </Export-Package>-->
+                        <Require-Bundle>
+                            org.eclipse.ui,
+                            org.eclipse.core.runtime
+                        </Require-Bundle>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        
+		<!-- Eclipse dependencies -->
+
+        <dependency>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>runtime</artifactId>
+            <version>[3.3.0.0,4.0.0)</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>resources</artifactId>
+            <version>[3.3.0.0,4.0.0)</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>ui</artifactId>
+            <version>[3.3.0.0,4.0.0)</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.swt</groupId>
+            <artifactId>org.eclipse.swt.win32.win32.x86</artifactId>
+            <version>[3.2.0.0,4.0.0)</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.ui</groupId>
+            <artifactId>ide</artifactId>
+            <version>[3.3.0.0,4.0.0)</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.ui</groupId>
+            <artifactId>views</artifactId>
+            <version>[3.2.0.0,4.0.0)</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.ui.workbench</groupId>
+            <artifactId>texteditor</artifactId>
+            <version>[3.3.0.0,4.0.0)</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jface</groupId>
+            <artifactId>text</artifactId>
+            <version>[3.3.0.0,4.0.0)</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
