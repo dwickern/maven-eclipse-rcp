@@ -21,8 +21,15 @@
     <description>A Simple Eclipse RCP Bundle</description>
 	
     <build>
-        <!-- don't use artifactId as first part of finalName, follow instead the eclipse convention -->  
-<!--        <finalName>org.s4i.maven.apache.uima.caseditor_${parsedVersion.osgiVersion}</finalName>  -->
+        <!--
+            We should use OSGI convention here instead of the artifactId.
+            This should be possible using build-helper-maven-plugin and
+            parsedVersion.osgiVersion but there is a problem:
+            http://osdir.com/ml/users-felix-apache/2010-08/msg00018.html
+        -->
+        <!--        
+        <finalName>test_${parsedVersion.osgiVersion}</finalName>
+        -->
         <resources>
             <resource>
                 <directory>.</directory>
