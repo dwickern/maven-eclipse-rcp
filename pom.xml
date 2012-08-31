@@ -27,27 +27,5 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-        <!--
-        <repository>
-            <id>eclipseNexus</id>
-            <name>Eclipse Nexus</name>
-            <layout>default</layout>
-            <url>http://maven.eclipse.org/nexus/index.html</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        -->
-        <!--
-        <repository>
-            <id>swt</id>
-            <name>SWT</name>
-            <layout>default</layout>
-            <url>https://swt-repo.googlecode.com/svn/repo/org/eclipse/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        -->
     </repositories>
 </project>

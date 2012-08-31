@@ -50,14 +50,6 @@
                         <Bundle-Activator>org.s4i.Activator</Bundle-Activator>
                         <Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
                         <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
-                        <!--
-                        <Bundle-RequiredExecutionEnvironment>J2SE-1.6</Bundle-RequiredExecutionEnvironment>-->
-<!--                        <Bundle-ClassPath>classes</Bundle-ClassPath>-->
-<!--                                <Bundle-Name>${project.name}</Bundle-Name>-->
-<!--                                <Bundle-Version>${project.version}</Bundle-Version>-->
-<!--                        <Export-Package>
-                            org.s4i.*
-                        </Export-Package>-->
                         <Require-Bundle>
                             org.eclipse.ui,
                             org.eclipse.core.runtime
