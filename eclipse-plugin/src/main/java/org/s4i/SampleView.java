@@ -1,6 +1,7 @@
 package org.s4i;
 
 
+import org.apache.commons.lang.NullArgumentException;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.*;
 import org.eclipse.jface.viewers.*;
@@ -87,6 +88,9 @@ public class SampleView extends ViewPart {
 	 * to create the viewer and initialize it.
 	 */
 	public void createPartControl(Composite parent) {
+        if (parent == null)
+            throw new NullArgumentException("parent");
+        
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
