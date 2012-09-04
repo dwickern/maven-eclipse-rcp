@@ -53,6 +53,14 @@
                         http://maven.apache.org/plugins/maven-eclipse-plugin/pde.html
                     -->
                     <pde>true</pde>
+                    
+                    <!--
+                        Add missing eclipse classpath entries
+                    -->
+                    <classpathContainers>
+                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+                        <classpathContainer>org.eclipse.pde.core.requiredPlugins</classpathContainer>
+                    </classpathContainers>
                 </configuration>
             </plugin>
             
