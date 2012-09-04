@@ -51,7 +51,12 @@
                 <extensions>true</extensions>
                     
                 <configuration>
+                    <!--
+                        This will generate the META-INF/MANIFEST.MF in the root
+                        for eclipse:eclipse goal
+                    -->
                     <manifestLocation>META-INF</manifestLocation>
+                    
                     <instructions>
                         <Bundle-SymbolicName>$(maven-symbolicname);singleton:=true</Bundle-SymbolicName>
                         <Bundle-Activator>org.s4i.Activator</Bundle-Activator>
