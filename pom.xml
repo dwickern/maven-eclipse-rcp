@@ -50,6 +50,7 @@
                     
                     <!--
                         Enable support for eclipse PDE
+                        http://maven.apache.org/plugins/maven-eclipse-plugin/pde.html
                     -->
                     <pde>true</pde>
                 </configuration>
