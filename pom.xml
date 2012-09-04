@@ -32,7 +32,25 @@
             </snapshots>
         </repository>
     </repositories>
-    
+    <build>
+        <plugins>
+            <!--
+                Used to generate eclipse .project and .classpath
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <!--
+                        Generate javadoc and source for eclipse
+                    -->
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencyManagement>
         <dependencies>
             <dependency>
