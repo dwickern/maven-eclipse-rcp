@@ -48,13 +48,9 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
-                    
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>$(maven-symbolicname);singleton:=true</Bundle-SymbolicName>
                         <Bundle-Activator>org.s4i.Activator</Bundle-Activator>
-                        <Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
-                        <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
                         <Require-Bundle>
                             org.eclipse.ui,
                             org.eclipse.core.runtime
