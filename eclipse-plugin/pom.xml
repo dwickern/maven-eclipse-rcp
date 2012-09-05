@@ -55,6 +55,13 @@
                             org.eclipse.ui,
                             org.eclipse.core.runtime
                         </Require-Bundle>
+                        
+                        <!--
+                            Exclude exported packages from transient dependencies:
+                            
+                            sun.misc - unused dependency of guava
+                        -->
+                        <Import-Package>!sun.misc,*</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>

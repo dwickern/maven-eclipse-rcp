@@ -14,12 +14,22 @@
     <description>The common parent pom</description>
 
     <modules>
-		<module>eclipse-plugin</module>
-	</modules>
+        <module>eclipse-plugin</module>
+    </modules>
     
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!--
+            Embed jar dependencies in the bundle inside this directory
+        -->
+        <bundle.library.dir>lib</bundle.library.dir>
+        
+        <!--
+            Generated eclipse directory structure should match the bundle
+        -->
+        <eclipse.library.dir>${basedir}/${bundle.library.dir}</eclipse.library.dir>
+    </properties>
     
     <repositories>
         <repository>
@@ -34,7 +44,6 @@
     </repositories>
     
     <build>
-        
         <pluginManagement>
             <plugins>
                 <!--
@@ -81,7 +90,7 @@
                             <!--
                                 Place jar dependencies in the "lib" directory of the output package
                             -->
-                            <Embed-Directory>lib</Embed-Directory>
+                            <Embed-Directory>${bundle.library.dir}</Embed-Directory>
 
                             <!--
                                 Embed transitive dependencies for all jar dependencies
@@ -120,18 +129,97 @@
                     <downloadJavadocs>true</downloadJavadocs>
                     
                     <!--
-                        Enable support for eclipse PDE
+                        Support for eclipse PDE is disabled because it excludes
+                        bundles from the eclipse classpath. Since most jar dependencies
+                        are also bundles (ie. apache commons, guava), we do not have
+                        the option of embedding them as jar files. The missing PDE
+                        configuration is added below.
+                        
+                        More information about PDE flag:
                         http://maven.apache.org/plugins/maven-eclipse-plugin/pde.html
+                        
+                        JIRA issue - "missing artifact references with pde mode enabled":
+                        http://jira.codehaus.org/browse/MECLIPSE-459
                     -->
-                    <pde>true</pde>
+                    <pde>false</pde>
                     
                     <!--
-                        Add missing eclipse classpath entries
+                        Add missing build commands that would be generated for a PDE build
+                    -->
+                    <additionalBuildcommands>
+                        <buildcommand>org.eclipse.pde.ManifestBuilder</buildcommand>
+                        <buildcommand>org.eclipse.pde.SchemaBuilder</buildcommand>
+                    </additionalBuildcommands>
+                        
+                    <!--
+                        Add missing natures that would be generated for a PDE build
+                    -->
+                    <additionalProjectnatures>
+                        <projectnature>org.eclipse.pde.PluginNature</projectnature>
+                    </additionalProjectnatures>
+                    
+                    <!--
+                        Add missing eclipse classpath entries (missing for both PDE and non-PDE)
                     -->
                     <classpathContainers>
                         <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
                         <classpathContainer>org.eclipse.pde.core.requiredPlugins</classpathContainer>
                     </classpathContainers>
+                </configuration>
+            </plugin>
+            
+            <!--
+                Copy dependencies to the "lib" directory for eclipse.
+                
+                In order for the Eclipse PDE system to build or deploy an Eclipse PDE project,
+                it requires that dependent jars exist somewhere within the project itself.
+                
+                More information:
+                http://maven.apache.org/plugins/maven-eclipse-plugin/pde.html
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <outputDirectory>${eclipse.library.dir}</outputDirectory>
+                    <overWriteReleases>true</overWriteReleases>
+                    <overWriteSnapshots>true</overWriteSnapshots>
+                    <overWriteIfNewer>true</overWriteIfNewer>
+                    <stripVersion>false</stripVersion>
+                    
+                    <!--
+                        Exclude "provided" dependencies, such as eclipse dependencies.
+                    -->
+                    <excludeScope>provided</excludeScope>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+ 
+            <!--
+                Clean up the lib directory created by the copy-dependencies goal
+            -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${eclipse.library.dir}</directory>
+                            <includes>
+                                <include>*.jar</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
                 </configuration>
             </plugin>
         </plugins>
