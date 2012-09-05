@@ -96,10 +96,6 @@
                 <configuration>
                     <instructions>
                         <Bundle-Activator>org.s4i.Activator</Bundle-Activator>
-                        <Require-Bundle>
-                            org.eclipse.ui,
-                            org.eclipse.core.runtime
-                        </Require-Bundle>
                         
                         <!--
                             Exclude exported packages from transient dependencies:
