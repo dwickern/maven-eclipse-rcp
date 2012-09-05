@@ -13,8 +13,8 @@
     </parent>
 
     <groupId>org.s4i</groupId>
-    <modelVersion>4.0.0</modelVersion>
     <artifactId>rcp</artifactId>
+    <modelVersion>4.0.0</modelVersion>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>eclipse-plugin</name>
@@ -53,6 +53,42 @@
         </resources>
         
         <plugins>
+            <!--
+                Overrides parent configuration to generate an eclipse PDE project
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <!--
+                        Add missing build commands that would be generated for a PDE build
+                    -->
+                    <additionalBuildcommands>
+                        <buildcommand>org.eclipse.pde.ManifestBuilder</buildcommand>
+                        <buildcommand>org.eclipse.pde.SchemaBuilder</buildcommand>
+                    </additionalBuildcommands>
+                        
+                    <!--
+                        Add missing natures that would be generated for a PDE build
+                    -->
+                    <additionalProjectnatures>
+                        <projectnature>org.eclipse.pde.PluginNature</projectnature>
+                    </additionalProjectnatures>
+                    
+                    <!--
+                        Add missing eclipse classpath entries (missing for both PDE and non-PDE)
+                    -->
+                    <classpathContainers>
+                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+                        <classpathContainer>org.eclipse.pde.core.requiredPlugins</classpathContainer>
+                    </classpathContainers>
+                </configuration>
+            </plugin>
+            
+            <!--
+                OSGI bundle configuration
+            -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -79,6 +115,21 @@
 
     <dependencies>
         
+        <!--
+            Project dependencies
+        -->
+        
+        <dependency>
+            <groupId>com.s4i</groupId>
+            <artifactId>eclipse-plugin-utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!--
+            Standard JAR dependencies
+        -->
+        
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
@@ -88,6 +139,10 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
+        
+        <!--
+            Eclipse dependencies
+        -->
 
         <dependency>
             <groupId>org.eclipse.core</groupId>

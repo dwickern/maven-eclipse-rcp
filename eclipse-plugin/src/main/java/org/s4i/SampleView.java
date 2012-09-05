@@ -1,6 +1,7 @@
 package org.s4i;
 
 
+import com.s4i.eclipsepluginutils.PluginUtils;
 import org.apache.commons.lang.NullArgumentException;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.*;
@@ -59,7 +60,7 @@ public class SampleView extends ViewPart {
 		public void dispose() {
 		}
 		public Object[] getElements(Object parent) {
-			return new String[] { "One", "Two", "Three" };
+            return PluginUtils.getViewElements();
 		}
 	}
 	class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {

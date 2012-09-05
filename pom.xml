@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.s4i</groupId>
@@ -15,6 +11,7 @@
 
     <modules>
         <module>eclipse-plugin</module>
+        <module>eclipse-plugin-utils</module>
     </modules>
     
     <properties>
@@ -53,8 +50,6 @@
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
                     <version>2.3.7</version>
-                    <extensions>true</extensions>
-                    <inherited>true</inherited>
                     <configuration>
                         <!--
                             This will generate the META-INF/MANIFEST.MF in the root
@@ -142,29 +137,6 @@
                         http://jira.codehaus.org/browse/MECLIPSE-459
                     -->
                     <pde>false</pde>
-                    
-                    <!--
-                        Add missing build commands that would be generated for a PDE build
-                    -->
-                    <additionalBuildcommands>
-                        <buildcommand>org.eclipse.pde.ManifestBuilder</buildcommand>
-                        <buildcommand>org.eclipse.pde.SchemaBuilder</buildcommand>
-                    </additionalBuildcommands>
-                        
-                    <!--
-                        Add missing natures that would be generated for a PDE build
-                    -->
-                    <additionalProjectnatures>
-                        <projectnature>org.eclipse.pde.PluginNature</projectnature>
-                    </additionalProjectnatures>
-                    
-                    <!--
-                        Add missing eclipse classpath entries (missing for both PDE and non-PDE)
-                    -->
-                    <classpathContainers>
-                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
-                        <classpathContainer>org.eclipse.pde.core.requiredPlugins</classpathContainer>
-                    </classpathContainers>
                 </configuration>
             </plugin>
             
