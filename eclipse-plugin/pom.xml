@@ -30,14 +30,23 @@
         <!--        
         <finalName>test_${parsedVersion.osgiVersion}</finalName>
         -->
+        
         <resources>
+            <!--
+                Add the resources that are outside of Maven's conventional resource directory.
+                These resources are in the root because eclipse requires them there.
+            -->
             <resource>
-                <directory>.</directory>
+                <directory>${basedir}</directory>
                 <includes>
                     <include>plugin.xml</include>
                     <include>icons/**/*.*</include>
                 </includes>
             </resource>
+            
+            <!--
+                Also include default resources directory
+            -->
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
