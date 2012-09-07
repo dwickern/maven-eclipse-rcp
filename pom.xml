@@ -30,6 +30,19 @@
     
     <repositories>
         <repository>
+            <id>s4i</id>
+            <name>s4i nexus repository</name>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:10</updatePolicy>
+            </snapshots>            
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>interval:10</updatePolicy>
+            </releases>            
+            <url>http://git.intra.s4isystems.com:8081/nexus/content/groups/public</url>
+        </repository>
+        <repository>
             <id>eclipseCentral</id>
             <name>Eclipse in Maven Central</name>
             <layout>default</layout>
@@ -101,7 +114,6 @@
                                 Strip jar dependency groupId
                             -->
                             <Embed-StripGroup>true</Embed-StripGroup>
-
                         </instructions>
                     </configuration>
                 </plugin>
@@ -238,60 +250,80 @@
                 - NOT included in the eclipse classpath by maven-eclipse-plugin (TODO)
                 - NOT included in the bundle classpath by maven-bundle-plugin
             -->
-
             <dependency>
                 <groupId>org.eclipse.core</groupId>
-                <artifactId>runtime</artifactId>
-                <version>[3.3.0.0,4.0.0)</version>
+                <artifactId>org.eclipse.core.runtime</artifactId>
+                <version>3.8.0</version>
                 <scope>provided</scope>
             </dependency>
-
+            
             <dependency>
-                <groupId>org.eclipse.core</groupId>
-                <artifactId>resources</artifactId>
-                <version>[3.3.0.0,4.0.0)</version>
+                <groupId>org.eclipse.ui</groupId>
+                <artifactId>org.eclipse.ui</artifactId>
+                <version>3.103.0</version>
                 <scope>provided</scope>
             </dependency>
-        
+            
             <dependency>
-                <groupId>org.eclipse</groupId>
-                <artifactId>ui</artifactId>
-                <version>[3.3.0.0,4.0.0)</version>
+                <groupId>org.eclipse.swt</groupId>
+                <artifactId>org.eclipse.swt</artifactId>
+                <version>3.100.0</version>
                 <scope>provided</scope>
             </dependency>
-
+            
             <dependency>
                 <groupId>org.eclipse.swt</groupId>
                 <artifactId>org.eclipse.swt.win32.win32.x86</artifactId>
-                <version>[3.2.0.0,4.0.0)</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.eclipse.ui</groupId>
-                <artifactId>ide</artifactId>
-                <version>[3.3.0.0,4.0.0)</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.eclipse.ui</groupId>
-                <artifactId>views</artifactId>
-                <version>[3.2.0.0,4.0.0)</version>
-                <scope>provided</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.eclipse.ui.workbench</groupId>
-                <artifactId>texteditor</artifactId>
-                <version>[3.3.0.0,4.0.0)</version>
+                <version>3.100.0</version>
                 <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.eclipse.jface</groupId>
-                <artifactId>text</artifactId>
-                <version>[3.3.0.0,4.0.0)</version>
+                <artifactId>org.eclipse.jface</artifactId>
+                <version>3.8.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.ui</groupId>
+                <artifactId>org.eclipse.ui.forms</artifactId>
+                <version>3.5.200</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.jface</groupId>
+                <artifactId>org.eclipse.jface.databinding</artifactId>
+                <version>1.6.0</version>
+                <scope>provided</scope>
+            </dependency>
+			
+            <dependency>
+                <groupId>org.eclipse.core</groupId>
+                <artifactId>org.eclipse.core.databinding</artifactId>
+                <version>1.4.1</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.core</groupId>
+                <artifactId>org.eclipse.core.databinding.beans</artifactId>
+                <version>1.2.200</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.core</groupId>
+                <artifactId>org.eclipse.core.databinding.observable</artifactId>
+                <version>1.4.1</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.core</groupId>
+                <artifactId>org.eclipse.core.databinding.property</artifactId>
+                <version>1.4.100</version>
                 <scope>provided</scope>
             </dependency>
         

@@ -103,6 +103,16 @@
                             sun.misc - unused dependency of guava
                         -->
                         <Import-Package>!sun.misc,*</Import-Package>
+                        
+						<Require-Bundle>
+							org.eclipse.ui,
+							org.eclipse.core.runtime,
+							org.eclipse.core.databinding;bundle-version="1.4.0",
+							org.eclipse.core.databinding.beans;bundle-version="1.2.100",
+							org.eclipse.jface.databinding;bundle-version="1.5.0",
+							org.eclipse.core.databinding.property;bundle-version="1.4.0",
+							org.eclipse.ui.forms;bundle-version="3.5.101"
+						</Require-Bundle>
                     </instructions>
                 </configuration>
             </plugin>
@@ -139,20 +149,20 @@
         <!--
             Eclipse dependencies
         -->
-
-        <dependency>
-            <groupId>org.eclipse.core</groupId>
-            <artifactId>runtime</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.core</groupId>
-            <artifactId>resources</artifactId>
-        </dependency>
         
         <dependency>
-            <groupId>org.eclipse</groupId>
-            <artifactId>ui</artifactId>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>org.eclipse.core.runtime</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.ui</groupId>
+            <artifactId>org.eclipse.ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.swt</groupId>
+            <artifactId>org.eclipse.swt</artifactId>
         </dependency>
 
         <dependency>
@@ -161,24 +171,43 @@
         </dependency>
 
         <dependency>
-            <groupId>org.eclipse.ui</groupId>
-            <artifactId>ide</artifactId>
+            <groupId>org.eclipse.jface</groupId>
+            <artifactId>org.eclipse.jface</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.eclipse.ui</groupId>
-            <artifactId>views</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.ui.workbench</groupId>
-            <artifactId>texteditor</artifactId>
+            <artifactId>org.eclipse.ui.forms</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.eclipse.jface</groupId>
-            <artifactId>text</artifactId>
+            <artifactId>org.eclipse.jface.databinding</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>org.eclipse.core.databinding</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>org.eclipse.core.databinding.beans</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>org.eclipse.core.databinding.observable</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>org.eclipse.core.databinding.property</artifactId>
+        </dependency>
+        
+        <!--
+            Test dependencies
+        -->
         
         <dependency>
             <groupId>junit</groupId>
