@@ -11,17 +11,21 @@ Run `mvn install`. The resulting artifact is an eclipse plugin.
 
 Building with Eclipse
 ---------------------
-1. First generate Eclipse metadata:
+1. Generate Eclipse metadata:
 
         mvn clean package eclipse:eclipse -Declipse.pde install
 
-1. Then import the projects into Eclipse:
+1. Import the projects into Eclipse:
 
         File->Import->Existing Projects into Workspace
    
-1. Then run the `eclipse-plugin` project:
+1. Run the `eclipse-plugin` project:
 
         Run As->Eclipse Application
+
+1. Open the view:
+
+        Window->Show View->Other->Test Category->Test View
 
 Project Information
 -------------------
@@ -32,15 +36,16 @@ Project Information
     
 * `eclipse-plugin-utils`
 
-    Used to demonstrate a dependency on another project.
+    Used by `eclipse-plugin` to demonstrate a dependency on another project in the same workspace.
 
 Notes
 -----
 1. Maven vs. eclipse resource convention
 
     Maven conventionally wants resources in `src/main/resources` while eclipse wants all of its resources in the root.
-    The solution was to place resources in the root and [include them](http://maven.apache.org/pom.html#Resources) using Maven.
-
+    The solution was to place resources in the root and [include them](http://maven.apache.org/pom.html#Resources) using Maven
+    (see [eclipse-plugin/pom.xml](eclipse-plugin/pom.xml)).
+    
 1. Eclipse Maven repository
 
     The latest maven repository in central dates back to eclipse version 3.3.
