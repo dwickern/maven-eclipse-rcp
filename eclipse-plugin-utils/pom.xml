@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+    
+    <parent>
+        <groupId>org.s4i</groupId>
+        <artifactId>maven-parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    
+    <groupId>com.s4i</groupId>
+    <artifactId>eclipse-plugin-utils</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+    <name>eclipse-plugin-utils</name>
+    <description>Utilities used by eclipse-plugin</description>
+    <packaging>bundle</packaging>
+    
+    <build>
+        <plugins>
+            <!--
+                Add extension for "bundle" packaging.
+                Use the paren't bundle configuration.
+            -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
+    
+</project>

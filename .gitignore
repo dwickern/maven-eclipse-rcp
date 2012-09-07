@@ -1,0 +1,12 @@
+# Maven artifacts
+*/target/**
+
+# Eclipse project files
+.classpath
+.project
+
+# Generated OSGI Bundle manifest
+MANIFEST.MF
+
+# Compiled Java
+*.jar
