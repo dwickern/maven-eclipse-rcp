@@ -44,7 +44,7 @@ Notes
 
     Maven conventionally wants resources in `src/main/resources` while eclipse wants all of its resources in the root.
     The solution was to place resources in the root and [include them](http://maven.apache.org/pom.html#Resources) using Maven
-    (see [eclipse-plugin/pom.xml](eclipse-plugin/pom.xml)).
+    (see [eclipse-plugin/pom.xml](https://github.com/dwickern/maven-eclipse-rcp/blob/master/eclipse-plugin/pom.xml)).
     
 1. Eclipse Maven repository
 
