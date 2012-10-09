@@ -12,10 +12,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.s4i</groupId>
     <artifactId>eclipse-plugin</artifactId>
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>eclipse-plugin</name>
     <description>A Simple Eclipse RCP Bundle</description>

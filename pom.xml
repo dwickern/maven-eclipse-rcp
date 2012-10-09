@@ -162,6 +162,24 @@
         <dependencies>
             
             <!--
+                Project dependencies
+            -->
+            
+            <dependency>
+                <groupId>org.s4i</groupId>
+                <artifactId>eclipse-plugin</artifactId>
+                <version>${project.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>com.s4i</groupId>
+                <artifactId>eclipse-plugin-utils</artifactId>
+                <version>${project.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            
+            <!--
                 API dependencies
             -->
             
