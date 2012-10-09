@@ -173,7 +173,7 @@
             </dependency>
             
             <dependency>
-                <groupId>com.s4i</groupId>
+                <groupId>org.s4i</groupId>
                 <artifactId>eclipse-plugin-utils</artifactId>
                 <version>${project.version}</version>
                 <scope>compile</scope>
