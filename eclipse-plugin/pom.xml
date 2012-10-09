@@ -47,23 +47,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
                 <configuration>
-                    <!--
-                        Add missing build commands that would be generated for a PDE build
-                    -->
-                    <additionalBuildcommands>
-                        <buildcommand>org.eclipse.pde.ManifestBuilder</buildcommand>
-                        <buildcommand>org.eclipse.pde.SchemaBuilder</buildcommand>
-                    </additionalBuildcommands>
-                        
-                    <!--
-                        Add missing natures that would be generated for a PDE build
-                    -->
-                    <additionalProjectnatures>
-                        <projectnature>org.eclipse.pde.PluginNature</projectnature>
-                    </additionalProjectnatures>
-                    
                     <!--
                         Add missing eclipse classpath entries (missing for both PDE and non-PDE)
                     -->
@@ -72,6 +56,51 @@
                         <classpathContainer>org.eclipse.pde.core.requiredPlugins</classpathContainer>
                     </classpathContainers>
                 </configuration>
+            </plugin>
+
+            <!--
+                Copy all transitive dependencies to "plugins" directory for eclipse.
+
+                Steps to point eclipse to the plugins:
+                1. Select "Window->Preferences" from the main menu
+                2. Expand to "Plug-in Development->Target Platform"
+                3. Select the default target definition and hit "Edit..."
+                4. Add a new directory location pointed to this project
+
+                More information:
+                http://rajakannappan.blogspot.com/2010/02/eclipse-rcp-converting-dependencies-to.html
+
+                Issues:
+                - All dependencies are copied, not just bundles
+                - JARs are not renamed to OSGi convention
+                  (for example, should be "1.0.0.SNAPSHOT" instead of "1.0-SNAPSHOT")
+
+                Maybe use this plugin instead:
+                http://dev.herasaf.org/svn/ETPPM/trunk/src/site/apt/usage.apt
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.5.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${build.plugins.directory}</outputDirectory>
+                            
+                            <!--
+                                Undocumented behavior: Includes both compile and runtime scope dependencies
+                                
+                                http://jira.codehaus.org/browse/MDEP-128
+                            -->
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             
             <!--
@@ -86,12 +115,11 @@
                         <Bundle-Activator>org.s4i.Activator</Bundle-Activator>
                         
                         <!--
-                            Exclude exported packages from transient dependencies:
-                            
-                            sun.misc - unused dependency of guava
+                            Eclipse dependencies must be declared as Require-Bundle
+                            instead of (or in addition to) Import-Package. Otherwise,
+                            the generated eclipse project will not property link
+                            to the eclipse dependencies in the workspace.
                         -->
-                        <Import-Package>!sun.misc,*</Import-Package>
-                        
 						<Require-Bundle>
 							org.eclipse.ui,
 							org.eclipse.core.runtime,
@@ -101,6 +129,28 @@
 							org.eclipse.core.databinding.property;bundle-version="1.4.0",
 							org.eclipse.ui.forms;bundle-version="3.5.101"
 						</Require-Bundle>
+
+                        <!--
+                            Exclude eclipse imports since they are specified in Require-Bundle.
+                        -->
+                        <Import-Package>
+                            !org.eclipse.*,
+                            *
+                        </Import-Package>
+
+                        <!--
+                            Use "-removeheaders" BND argument to remove unwanted headers.
+
+                            Must be all on one line.
+                        -->
+                        <_removeheaders>Ignore-Package,Include-Resource,Private-Package</_removeheaders>
+
+                        <!--
+                            Apply "-failok" BND argument.
+
+                            Don't care if BND can't find some packages
+                        -->
+                        <_failok>true</_failok>
                     </instructions>
                 </configuration>
             </plugin>
