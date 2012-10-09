@@ -30,6 +30,12 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!--
+            Java runtime level.
+            1.6 is used since 1.5 and lower does not allow @Override on interface implementations.
+        -->
+        <java.level>1.6</java.level>
     </properties>
     
     <build>
@@ -82,6 +88,38 @@
         </pluginManagement>
         
         <plugins>
+            
+            <!--
+                Used to generate project files for IntelliJ IDEA
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-idea-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!--
+                        Generate javadoc and source for IDEA
+                    -->
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    
+                    <!--
+                        Set JDK level.
+                        
+                        This may not work in newer versions of IDEA.
+                        If the JDK level is not set properly you will see errors on @Override annotations.
+                        If this happens, you can set the required Java level manually on the root project:
+                            
+                            1. Right-click on root project
+                            2. Select "Open Module Settings"
+                            3. Select "Project" from "Project Settings" on the left side
+                            4. Set "Project language level" to "6.0 - @Override in interfaces"
+                    -->
+                    <jdkName>${java.level}</jdkName>
+                    <jdkLevel>${java.level}</jdkLevel>
+                </configuration>
+            </plugin>
+            
             <!--
                 Used to generate eclipse .project and .classpath
             -->
