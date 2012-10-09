@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.s4i</groupId>
         <artifactId>maven-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     
