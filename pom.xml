@@ -18,6 +18,16 @@
         <module>eclipse-plugin-utils</module>
     </modules>
     
+    <prerequisites>
+        <!--
+            Minimum Maven version required by plugins.
+            For version analysis of dependencies and plugins, run the goals:
+                versions:display-plugin-updates
+                versions:display-dependency-updates
+        -->
+        <maven>2.2.1</maven>
+    </prerequisites>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
