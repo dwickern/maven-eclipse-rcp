@@ -63,7 +63,10 @@
                             <Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
 
                             <!--
-                                Load bundles lazily
+                                Load bundles lazily.
+                                This shouldn't matter since lazy is the default, but without it
+                                you have to modify the Eclipse run configuration to "auto-start".
+                                Otherwise the bundle activator doesn't get started.
                             -->
                             <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
 
