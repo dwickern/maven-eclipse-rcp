@@ -1,4 +1,4 @@
-package com.s4i.eclipsepluginutils;
+package org.s4i.utils;
 
 /**
  *
