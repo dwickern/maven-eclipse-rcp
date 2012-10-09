@@ -30,16 +30,6 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
-        <!--
-            Embed jar dependencies in the bundle inside this directory
-        -->
-        <bundle.library.dir>lib</bundle.library.dir>
-        
-        <!--
-            Generated eclipse directory structure should match the bundle
-        -->
-        <eclipse.library.dir>${basedir}/${bundle.library.dir}</eclipse.library.dir>
     </properties>
     
     <build>
