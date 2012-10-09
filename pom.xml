@@ -115,75 +115,25 @@
                     <downloadJavadocs>true</downloadJavadocs>
                     
                     <!--
-                        Support for eclipse PDE is disabled because it excludes
-                        bundles from the eclipse classpath. Since most jar dependencies
-                        are also bundles (ie. apache commons, guava), we do not have
-                        the option of embedding them as jar files. The missing PDE
-                        configuration is added below.
+                        Enable PDE mode.
+                        This is a major switch that changes the behavior of the plugin.
                         
-                        More information about PDE flag:
+                        More information:
                         http://maven.apache.org/plugins/maven-eclipse-plugin/pde.html
-                        
-                        JIRA issue - "missing artifact references with pde mode enabled":
-                        http://jira.codehaus.org/browse/MECLIPSE-459
                     -->
-                    <pde>false</pde>
-                </configuration>
-            </plugin>
-            
-            <!--
-                Copy dependencies to the "lib" directory for eclipse.
-                
-                In order for the Eclipse PDE system to build or deploy an Eclipse PDE project,
-                it requires that dependent jars exist somewhere within the project itself.
-                
-                More information:
-                http://maven.apache.org/plugins/maven-eclipse-plugin/pde.html
-            -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <outputDirectory>${eclipse.library.dir}</outputDirectory>
-                    <overWriteReleases>true</overWriteReleases>
-                    <overWriteSnapshots>true</overWriteSnapshots>
-                    <overWriteIfNewer>true</overWriteIfNewer>
-                    <stripVersion>false</stripVersion>
-                    
-                    <!--
-                        Exclude "provided" dependencies, such as eclipse dependencies.
-                    -->
-                    <excludeScope>provided</excludeScope>
+                    <pde>true</pde>
                 </configuration>
                 <executions>
+                    <!--
+                        Generate eclipse .project and .classpath
+                    -->
                     <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
+                        <id>generate-eclipse-metadata</id>
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>eclipse</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
- 
-            <!--
-                Clean up the lib directory created by the copy-dependencies goal
-            -->
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>${eclipse.library.dir}</directory>
-                            <includes>
-                                <include>*.jar</include>
-                            </includes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                    </filesets>
-                </configuration>
             </plugin>
         </plugins>
     </build>
