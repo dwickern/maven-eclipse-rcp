@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.s4i.eclipsepluginutils;
+package org.s4i.utils;
 
 import org.junit.AfterClass;
 import org.junit.Test;

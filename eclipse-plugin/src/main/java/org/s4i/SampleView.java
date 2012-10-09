@@ -1,7 +1,7 @@
 package org.s4i;
 
 
-import com.s4i.eclipsepluginutils.PluginUtils;
+import org.s4i.utils.PluginUtils;
 import org.apache.commons.lang.NullArgumentException;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.*;
