@@ -69,33 +69,6 @@
                                 Otherwise the bundle activator doesn't get started.
                             -->
                             <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
-
-                            <!--
-                                Embed compile and runtime scope jar dependencies
-                            -->
-                            <Embed-Dependency>
-                                *;scope=compile|runtime;inline=false
-                            </Embed-Dependency>
-
-                            <!--
-                                Place jar dependencies in the "lib" directory of the output package
-                            -->
-                            <Embed-Directory>${bundle.library.dir}</Embed-Directory>
-
-                            <!--
-                                Embed transitive dependencies for all jar dependencies
-                            -->
-                            <Embed-Transitive>true</Embed-Transitive>
-
-                            <!--
-                                Use dependency version in jar name
-                            -->
-                            <Embed-StripVersion>false</Embed-StripVersion>
-
-                            <!--
-                                Strip jar dependency groupId
-                            -->
-                            <Embed-StripGroup>true</Embed-StripGroup>
                         </instructions>
                     </configuration>
                 </plugin>
