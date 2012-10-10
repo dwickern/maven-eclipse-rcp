@@ -1,12 +1,32 @@
 # Maven artifacts
 */target/**
 
-# Eclipse project files
-.classpath
-.project
-
 # Generated OSGI Bundle manifest
 MANIFEST.MF
 
-# Compiled Java
+# Diff artifacts
+*.orig
+
+# Java binaries
+*.class
+
+# Package files
 *.jar
+*.war
+*.ear
+
+# Eclipse project files
+.project
+.classpath
+.settings/
+.metadata/
+
+# Netbeans project files
+nbactions.xml
+nb-configuration.xml
+
+# IDEA project files
+.idea/
+*.iml
+*.ipr
+*.iws
