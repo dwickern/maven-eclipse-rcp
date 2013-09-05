@@ -1,6 +1,5 @@
 package org.s4i;
 
-import java.io.Console;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -11,7 +10,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "test-plugin"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.s4i.eclipse-plugin"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -28,7 +27,6 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-        System.out.println("Starting plugin");
 		plugin = this;
 	}
 
@@ -38,7 +36,6 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
-        System.out.println("Stopping plugin");
 		super.stop(context);
 	}
 

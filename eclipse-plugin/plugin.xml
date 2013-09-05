@@ -1,38 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension
+         id="id1"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.s4i.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.s4i.Perspective"
+            id="eclipse-plugin.perspective"
+            name="Perspective">
+      </perspective>
+   </extension>
 
    <extension
          point="org.eclipse.ui.views">
-      <category
-            name="Test Category"
-            id="test-plugin">
-      </category>
       <view
-            name="Test View"
-            icon="icons/sample.gif"
-            category="test-plugin"
-            class="org.s4i.SampleView"
-            id="org.s4i.SampleView">
+            class="org.s4i.View"
+            id="eclipse-plugin.view"
+            name="View">
       </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
+            targetID="*">
          <view
-               ratio="0.5"
-               relative="org.eclipse.ui.views.ProblemView"
-               relationship="right"
-               id="org.s4i.SampleView">
+               id="eclipse-plugin.view"
+               minimized="false"
+               relationship="left"
+               relative="org.eclipse.ui.editorss"
+               standalone="true">
          </view>
       </perspectiveExtension>
    </extension>
    <extension
-         point="org.eclipse.help.contexts">
-      <contexts
-            file="contexts.xml">
-      </contexts>
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               label="File">
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Exit">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.s4i.eclipse-plugin.id1"
+            name="eclipse-plugin">
+      </product>
+   </extension>
+   <extension
+         id="product1"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.s4i.eclipse-plugin.id1"
+            name="eclipse-plugin">
+         <property
+               name="appName"
+               value="eclipse-plugin">
+         </property>
+      </product>
    </extension>
 
 </plugin>
