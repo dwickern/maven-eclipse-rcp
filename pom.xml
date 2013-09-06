@@ -304,6 +304,13 @@
                 <artifactId>org.eclipse.osgi.services</artifactId>
                 <version>3.3.100</version>
                 <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <!-- circular dependency on self -->
+                        <groupId>org.eclipse.osgi</groupId>
+                        <artifactId>org.eclipse.osgi.services</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         
             <dependency>
@@ -311,6 +318,13 @@
                 <artifactId>org.eclipse.equinox.preferences</artifactId>
                 <version>3.5.0</version>
                 <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <!-- circular dependency on self -->
+                        <groupId>org.eclipse.equinox</groupId>
+                        <artifactId>org.eclipse.equinox.preferences</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         
             <dependency>
@@ -318,6 +332,13 @@
                 <artifactId>org.eclipse.equinox.ds</artifactId>
                 <version>1.4.0</version>
                 <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <!-- circular dependency on self -->
+                        <groupId>org.eclipse.equinox</groupId>
+                        <artifactId>org.eclipse.equinox.ds</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         
             <dependency>
