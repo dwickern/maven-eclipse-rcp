@@ -12,12 +12,23 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>eclipse-plugin</artifactId>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>bundle</packaging>
-    <name>eclipse-plugin</name>
+    <artifactId>eclipse-plugin</artifactId>
+
+    <packaging>${packaging.type}</packaging>
     <description>A sample mavenized Eclipse RCP bundle</description>
-	
+
+    <properties>
+        <build.plugins.directory>${project.build.directory}/plugins</build.plugins.directory>
+
+        <!--
+            A profile can't switch the packaging directly,
+            so set the packaging to the value of this property
+            and have the profile change the property value.
+        -->
+        <packaging.type>bundle</packaging.type>
+    </properties>
+
     <build>
         <resources>
             <!--
@@ -112,6 +123,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+
                         <Bundle-Activator>org.s4i.Activator</Bundle-Activator>
                         
                         <!--
@@ -183,65 +195,6 @@
         </dependency>
         
         <!--
-            Eclipse dependencies
-        -->
-        
-        <dependency>
-            <groupId>org.eclipse.core</groupId>
-            <artifactId>org.eclipse.core.runtime</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.ui</groupId>
-            <artifactId>org.eclipse.ui</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.swt</groupId>
-            <artifactId>org.eclipse.swt</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.swt</groupId>
-            <artifactId>org.eclipse.swt.win32.win32.x86</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.jface</groupId>
-            <artifactId>org.eclipse.jface</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.ui</groupId>
-            <artifactId>org.eclipse.ui.forms</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.jface</groupId>
-            <artifactId>org.eclipse.jface.databinding</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.core</groupId>
-            <artifactId>org.eclipse.core.databinding</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.core</groupId>
-            <artifactId>org.eclipse.core.databinding.beans</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.core</groupId>
-            <artifactId>org.eclipse.core.databinding.observable</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.core</groupId>
-            <artifactId>org.eclipse.core.databinding.property</artifactId>
-        </dependency>
-        
-        <!--
             Test dependencies
         -->
         
@@ -250,4 +203,37 @@
             <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
+
+    <profiles>
+
+        <!--
+            Maven profile
+        -->
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <!--
+            Tycho profile
+        -->
+        <profile>
+            <id>tycho</id>
+            <properties>
+                <packaging.type>eclipse-plugin</packaging.type>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eclipse.tycho</groupId>
+                        <artifactId>tycho-maven-plugin</artifactId>
+                        <version>${tycho.version}</version>
+                        <extensions>true</extensions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

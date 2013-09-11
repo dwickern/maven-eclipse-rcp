@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         id="id1"
+         id="application"
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
@@ -55,22 +55,14 @@
       </menuContribution>
    </extension>
    <extension
-         id="product"
+         id="prod"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.s4i.eclipse-plugin.id1"
-            name="eclipse-plugin">
-      </product>
-   </extension>
-   <extension
-         id="product1"
-         point="org.eclipse.core.runtime.products">
-      <product
-            application="org.s4i.eclipse-plugin.id1"
-            name="eclipse-plugin">
+            application="eclipse-plugin.application"
+            name="Eclipse Product">
          <property
                name="appName"
-               value="eclipse-plugin">
+               value="Eclipse Product">
          </property>
       </product>
    </extension>
