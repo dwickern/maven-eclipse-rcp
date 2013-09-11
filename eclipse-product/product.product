@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Eclipse Product" uid="org.s4i.product.id" id="org.s4i.eclipse-plugin.prod" application="eclipse-plugin.application" version="1.0.0.SNAPSHOT" useFeatures="true" includeLaunchers="true">
+<product name="Eclipse Product" uid="org.s4i.product.id" id="eclipse-plugin.product" application="eclipse-plugin.application" version="1.0.0.SNAPSHOT" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -13,23 +13,26 @@
    <windowImages/>
 
    <launcher>
+      <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
 
-   <vm/>
+   <vm>
+   </vm>
 
-   <plugins/>
+   <plugins>
+   </plugins>
 
    <features>
       <feature id="eclipse-feature"/>
    </features>
 
    <configurations>
-        <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
-        <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="3" />
-        <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="3" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="3" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="3" />
    </configurations>
 
 </product>

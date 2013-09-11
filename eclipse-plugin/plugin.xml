@@ -55,7 +55,7 @@
       </menuContribution>
    </extension>
    <extension
-         id="prod"
+         id="product"
          point="org.eclipse.core.runtime.products">
       <product
             application="eclipse-plugin.application"
