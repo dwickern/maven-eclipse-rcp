@@ -1,43 +1,23 @@
 package org.s4i;
 
-import org.eclipse.jface.viewers.IStructuredContentProvider;
+import com.google.common.collect.ImmutableList;
+import org.apache.commons.lang.NullArgumentException;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.s4i.utils.PluginUtils;
 
 public class View extends ViewPart {
 	public static final String ID = "eclipse-plugin.view";
 
 	private TableViewer viewer;
-
-	/**
-	 * The content provider class is responsible for providing objects to the
-	 * view. It can wrap existing objects in adapters or simply return objects
-	 * as-is. These objects may be sensitive to the current input of the view,
-	 * or ignore it and always show the same content (like Task List, for
-	 * example).
-	 */
-	class ViewContentProvider implements IStructuredContentProvider {
-		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
-		}
-
-		public void dispose() {
-		}
-
-		public Object[] getElements(Object parent) {
-			if (parent instanceof Object[]) {
-				return (Object[]) parent;
-			}
-	        return new Object[0];
-		}
-	}
 
 	class ViewLabelProvider extends LabelProvider implements
 			ITableLabelProvider {
@@ -60,12 +40,14 @@ public class View extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL
-				| SWT.V_SCROLL);
-		viewer.setContentProvider(new ViewContentProvider());
+        if (parent == null)
+            throw new NullArgumentException("parent");
+
+		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		viewer.setContentProvider(new ArrayContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		// Provide the input to the ContentProvider
-		viewer.setInput(new String[] {"One", "Two", "Three"});
+		viewer.setInput(ImmutableList.copyOf(PluginUtils.getViewElements()));
 	}
 
 	/**
