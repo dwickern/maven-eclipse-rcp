@@ -21,6 +21,10 @@ MANIFEST.MF
 .settings/
 .metadata/
 
+# Generated eclipse files
+feature.xml
+feature.properties
+
 # Netbeans project files
 nbactions.xml
 nb-configuration.xml
