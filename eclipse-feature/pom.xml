@@ -42,7 +42,7 @@
             so set the packaging to the value of this property
             and have the profile change the property value.
         -->
-        <packaging.type>pom</packaging.type>
+        <packaging.type>jar</packaging.type>
     </properties>
 
     <build>
