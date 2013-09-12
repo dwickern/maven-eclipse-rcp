@@ -122,40 +122,6 @@
         
         <plugins>
 
-            <plugin>
-                <groupId>org.eclipse.tycho</groupId>
-                <artifactId>tycho-p2-repository-plugin</artifactId>
-                <version>${tycho.version}</version>
-                <configuration>
-                    <includeAllDependencies>true</includeAllDependencies>
-                </configuration>
-            </plugin>
-
-            <!--
-                Target definition is used by Tycho as the build context.
-
-                The target definition includes eclipse feature dependencies
-                which are located in the official P2 repository.
-
-                It combines these dependencies with the bundle dependencies
-                listed in the dependency section of this pom.
-            -->
-            <plugin>
-                <groupId>org.eclipse.tycho</groupId>
-                <artifactId>target-platform-configuration</artifactId>
-                <version>${tycho.version}</version>
-                <configuration>
-                    <pomDependencies>consider</pomDependencies>
-                    <environments>
-                        <environment>
-                            <os>win32</os>
-                            <ws>win32</ws>
-                            <arch>x86</arch>
-                        </environment>
-                    </environments>
-                </configuration>
-            </plugin>
-
             <!--
                 Used to generate project files for IntelliJ IDEA
             -->
@@ -437,6 +403,62 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>tycho</id>
+            <repositories>
+                <!--
+                    Eclipse Juno P2 repository
+
+                    Used by Tycho; ignored by Maven.
+                    Contains missing dependencies on Eclipse fragments.
+                -->
+                <repository>
+                    <id>eclipse-juno</id>
+                    <name>eclipse juno p2 repository</name>
+                    <layout>p2</layout>
+                    <url>http://download.eclipse.org/releases/juno</url>
+                </repository>
+            </repositories>
+
+            <build>
+                <plugins>
+                    <!--
+                        Target definition is used by Tycho as the build context.
+
+                        The target definition includes eclipse feature dependencies
+                        which are located in the official P2 repository.
+
+                        It combines these dependencies with the bundle dependencies
+                        listed in the dependency section of this pom.
+                    -->
+                    <plugin>
+                        <groupId>org.eclipse.tycho</groupId>
+                        <artifactId>target-platform-configuration</artifactId>
+                        <version>${tycho.version}</version>
+                        <configuration>
+                            <pomDependencies>consider</pomDependencies>
+                            <environments>
+                                <environment>
+                                    <os>win32</os>
+                                    <ws>win32</ws>
+                                    <arch>x86</arch>
+                                </environment>
+                            </environments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     
     <repositories>
         <repository>
@@ -451,19 +473,6 @@
                 <updatePolicy>interval:10</updatePolicy>
             </releases>            
             <url>http://git.intra.s4isystems.com:8081/nexus/content/groups/public</url>
-        </repository>
-
-        <!--
-            Eclipse Juno P2 repository
-
-            Used by Tycho; ignored by Maven.
-            Contains missing dependencies on Eclipse fragments.
-        -->
-        <repository>
-            <id>eclipse-juno</id>
-            <name>eclipse juno p2 repository</name>
-            <layout>p2</layout>
-            <url>http://download.eclipse.org/releases/juno</url>
         </repository>
     </repositories>
     
