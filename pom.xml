@@ -24,6 +24,7 @@
         <module>eclipse-plugin-utils</module>
         <module>eclipse-feature</module>
         <module>eclipse-product</module>
+        <module>target-platform</module>
     </modules>
     
     <prerequisites>

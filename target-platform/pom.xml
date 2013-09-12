@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    >
+    <parent>
+        <groupId>org.s4i</groupId>
+        <artifactId>maven-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>target-platform</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.s4i</groupId>
+            <artifactId>eclipse-plugin</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!--
+                Generate empty eclipse .project and .classpath
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <buildcommands/>
+                    <projectnatures/>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-eclipse-metadata</id>
+                        <goals>
+                            <goal>eclipse</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+                Generate target platform with Maven dependencies
+            -->
+            <plugin>
+                <groupId>lt.velykis.maven</groupId>
+                <artifactId>pde-target-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <id>pde-target</id>
+                        <goals>
+                            <goal>add-pom-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <baseDefinition>${project.basedir}/base.target</baseDefinition>
+                            <outputFile>${project.build.directory}/juno.target</outputFile>
+                            <excludeScope>provided</excludeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
